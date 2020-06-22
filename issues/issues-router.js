@@ -36,6 +36,7 @@ router.get('/:id', (req,res) => {
   const { id } = req.params;
   Issues.findById(id)
     .then(issue => {
+      console.log(issue);
       if(issue) {
         res.status(200).json(issue);
       } else {
@@ -68,30 +69,36 @@ router.post('/', (req,res) => {
 // PUT an issue
 router.put('/:id', (req,res) => {
   const { id } = req.params;
+  const update = req.body;
   Issues.findById(id)
     .then(issue => {
-      Issues.edit({...issue, city: issue.city.toLowerCase(), created_on: moment().format("MMMM Do YYYY")}, id)
+      console.log(issue);
+      if(issue) {
+        Issues.edit({...update, city: update.city.toLowerCase()}, id)
           .then(updatedIssue => {
             res.status(200).json(updatedIssue);
           })
           .catch(err => {
             console.log('PUT /:id', err);
-            res.status(400).json({ error: "Failed to update the issue" });
+            res.status(400).json({ error: "Unable to update the issue" });
           })
+      } else {
+        res.status(404).json({ error: `Unable to find an issue with id: ${id}` });
+      }
     })
     .catch(err => {
       console.log('PUT /:id', err);
-      res.status(404).json({ error: `Unable to find an issue with id: ${id}` });
+      res.status(500).json({ error: "Error occurred while updating the issue" });
     })
 });
-
 
 // DELETE an issue
 router.delete('/:id', (req,res) => {
   const { id } = req.params;
   Issues.findById(id)
     .then(issue => {
-      Issues.remove(issue.id)
+      console.log(issue);
+      Issues.remove(issue[0].id)
         .then(removed => {
           if(removed) {
             res.status(200).json({ deleted: "The issue was deleted" });

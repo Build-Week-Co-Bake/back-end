@@ -25,7 +25,7 @@ function findById(id) {
   return db('issues')
     .where('issues.id', id)
     .join('users', 'users.id', 'issues.user_id')
-    .select('issues.id', 'issues.title', 'issues.description', 'issues.city', 'issues.hoa', 'issues.image', 'issues.upvotes', 'issues.created_on', 'users.profile_pic', 'users.name')
+    .select('issues.id', 'issues.title', 'issues.description', 'issues.city', 'issues.hoa', 'issues.image', 'issues.upvotes', 'issues.created_on', 'users.name')
 }
 
 // GET ISSUE BY USER_ID

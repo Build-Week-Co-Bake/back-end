@@ -10,7 +10,7 @@ exports.seed = function(knex) {
           hoa: "",
           image: "",
           upvotes: 10,
-          created_on: "June 11th, 2020",
+          created_on: "June 11th 2020",
           user_id: 1,
         },
         {
@@ -20,7 +20,7 @@ exports.seed = function(knex) {
           hoa: "",
           image: "",
           upvotes: 7,
-          created_on: "May 20th, 2020",
+          created_on: "May 20th 2020",
           user_id: 2,
         },
         {
@@ -30,7 +30,7 @@ exports.seed = function(knex) {
           hoa: "",
           image: "",
           upvotes: 1,
-          created_on: "January 22nd, 2020",
+          created_on: "January 22nd 2020",
           user_id: 3,
         }
     ]);
