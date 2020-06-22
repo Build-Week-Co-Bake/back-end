@@ -2,7 +2,7 @@
 
 Welcome to the Co-Make API!
 
-The server is located at: **URL**
+The server is located at: **<https://lambda-co-make.herokuapp.com/>**
 
 ## POST /api/register
 

@@ -1,4 +1,5 @@
-// Update with your config settings.
+require("dotenv").config();
+
 const pgConnection = process.env.DATABASE_URL || "postgresql:postgres@localhost/comake";
 
 module.exports = {
