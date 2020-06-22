@@ -69,10 +69,11 @@ router.post('/', (req,res) => {
 router.put('/:id', (req,res) => {
   const { id } = req.params;
   const update = req.body;
-  console.log(req.decodedToken.subject);
+  console.log(req.decodedToken.email);
   Issues.findById(id)
     .then(issue => {
-      if(issue.user_id === req.decodedToken.subject) {
+      console.log('testing the put for id:', issue);
+      if(issue.email === req.decodedToken.email) {
         Issues.edit({...update, city: update.city.toLowerCase(), created_on: moment().format("MMMM Do YYYY")}, id)
           .then(updatedIssue => {
             res.status(200).json(updatedIssue);
@@ -82,7 +83,7 @@ router.put('/:id', (req,res) => {
             res.status(400).json({ error: "Failed to update the issue" });
           })
       } else {
-        res.status(400).json({ message: "Unable to update the issue, you are not the owner" });
+        res.status(403).json({ message: "Unable to update the issue, you are not the owner" });
       }
     })
     .catch(err => {
