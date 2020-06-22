@@ -68,13 +68,9 @@ router.post('/', (req,res) => {
 // PUT an issue
 router.put('/:id', (req,res) => {
   const { id } = req.params;
-  const update = req.body;
-  console.log(req.decodedToken.email);
   Issues.findById(id)
     .then(issue => {
-      console.log('testing the put for id:', issue);
-      if(issue.email === req.decodedToken.email) {
-        Issues.edit({...update, city: update.city.toLowerCase(), created_on: moment().format("MMMM Do YYYY")}, id)
+      Issues.edit({...issue, city: issue.city.toLowerCase(), created_on: moment().format("MMMM Do YYYY")}, id)
           .then(updatedIssue => {
             res.status(200).json(updatedIssue);
           })
@@ -82,9 +78,6 @@ router.put('/:id', (req,res) => {
             console.log('PUT /:id', err);
             res.status(400).json({ error: "Failed to update the issue" });
           })
-      } else {
-        res.status(403).json({ message: "Unable to update the issue, you are not the owner" });
-      }
     })
     .catch(err => {
       console.log('PUT /:id', err);
@@ -98,8 +91,7 @@ router.delete('/:id', (req,res) => {
   const { id } = req.params;
   Issues.findById(id)
     .then(issue => {
-      if(issue.user_id === req.decodedToken.subject) {
-        Issues.remove(issue.id)
+      Issues.remove(issue.id)
         .then(removed => {
           if(removed) {
             res.status(200).json({ deleted: "The issue was deleted" });
@@ -108,9 +100,6 @@ router.delete('/:id', (req,res) => {
           }
         })
         .catch(err => console.log(err));
-      } else {
-        res.status(400).json({ message: "Unable to delete the issue, you are not the owner" });
-      }
     })
     .catch(err => {
       console.log('DELETE /', err);

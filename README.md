@@ -157,7 +157,6 @@ axios.get(`localhost:5000/issues/search?city=${city input goes here}`)
 ## PUT /issues/:id
 
 - users can edit issues using this endpoint
-- NOTE: if the `user.id` **does not** match the `issue.user_id`, the user **cannot** update the issue, the server will reject the request
 
 ```js
 // req.body
@@ -171,7 +170,6 @@ axios.get(`localhost:5000/issues/search?city=${city input goes here}`)
 ## DELETE '/issues/:id
 
 - users can delete issues using this endpoint
-- NOTE: if the `user.id` **does not** match the `issue.user_id`, the user **cannot** delete the issue, the server will reject the request
 
 ```js
 // JSON message displayed upon a successful delete
