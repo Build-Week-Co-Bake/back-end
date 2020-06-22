@@ -15,7 +15,7 @@ server.use('/api', authRouter);
 server.use('/issues', restricted, issuesRouter);
 
 server.get('/', (req,res) => {
-  res.status(200).json({ api: "Welcome to the Co-Make API!" });
+  res.json({ api: "Welcome to the Co-Make API!" });
 });
 
 module.exports = server;
