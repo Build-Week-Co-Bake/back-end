@@ -68,11 +68,12 @@ router.post('/', (req,res) => {
 // PUT an issue
 router.put('/:id', (req,res) => {
   const { id } = req.params;
-  const issue = req.body;
+  const update = req.body;
+  console.log(req.decodedToken.subject);
   Issues.findById(id)
     .then(issue => {
       if(issue.user_id === req.decodedToken.subject) {
-        Issues.edit({...issue, city: issue.city.toLowerCase(), created_on: moment().format("MMMM Do YYYY")}, id)
+        Issues.edit({...update, city: update.city.toLowerCase(), created_on: moment().format("MMMM Do YYYY")}, id)
           .then(updatedIssue => {
             res.status(200).json(updatedIssue);
           })

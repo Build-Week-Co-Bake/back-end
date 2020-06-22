@@ -8,6 +8,7 @@ The server is located at: **<https://lambda-co-make.herokuapp.com/>**
 
 - users can register new accounts at this endpoint
 - Registration **requires** an `email`, `name`, and `password`
+- NOTE: `email` **is** case-sensitive
 - Don't worry about the returned password—the hashed password is returned; the password you registered with will still work with the login
 
 ```js
@@ -25,6 +26,7 @@ The server is located at: **<https://lambda-co-make.herokuapp.com/>**
 
 - users can login with their credentials using this endpoint
 - An `email` and `password` are **required** for login
+- NOTE: `email` **is** case-sensitive
 - the token is returned just so you can see that a token exists for use in `localStorage`
 
 ```js
