@@ -33,9 +33,14 @@ The server is located at: **<https://lambda-co-make.herokuapp.com/>**
 ```js
 // returned JSON object
 {
-  "message": "Welcome to the API, Joe",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo0LCJ1c2VybmFtZSI6IkpvbmF0aGFuIiwiaWF0IjoxNTkyNjk2MDEzLCJleHAiOjE1OTI3ODI0MTN9.EnOFR8i4-D18xdx00ra-pfiPFSjR3l2pUEgD97Tdj_E",
-  "userId": 4
+  "data": {
+      "id": 1,
+      "email": "Joe@gmail.com",
+      "name": "Joe",
+      "password": "$2a$08$PCbXNjekRrLIvYA5O9oFYOfMNrMp0V0F3WwFQVwP3UN2mMmJwKd7q",
+      "profile_pic": ""
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo0LCJlbWFpbCI6IkpvbkBnbWFpbC5jb20iLCJpYXQiOjE1OTI5MjUxNTcsImV4cCI6MTU5MzAxMTU1N30.sBmC7y7suoP4-4axCIJq4t3JcU968uNh-pmM1HBVQm8"
 }
 ```
 

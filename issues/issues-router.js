@@ -36,7 +36,6 @@ router.get('/:id', (req,res) => {
   const { id } = req.params;
   Issues.findById(id)
     .then(issue => {
-      console.log(issue);
       if(issue) {
         res.status(200).json(issue);
       } else {
@@ -72,7 +71,6 @@ router.put('/:id', (req,res) => {
   const update = req.body;
   Issues.findById(id)
     .then(issue => {
-      console.log(issue);
       if(issue) {
         Issues.edit({...update, city: update.city.toLowerCase()}, id)
           .then(updatedIssue => {
@@ -97,7 +95,6 @@ router.delete('/:id', (req,res) => {
   const { id } = req.params;
   Issues.findById(id)
     .then(issue => {
-      console.log(issue);
       Issues.remove(issue[0].id)
         .then(removed => {
           if(removed) {

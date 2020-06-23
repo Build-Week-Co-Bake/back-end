@@ -37,11 +37,10 @@ router.post('/login', (req,res) => {
   if(isValid(req.body)) {
     Users.findBy({ email: email })
       .then(([user]) => {
-        let userId = user.id;
-        console.log('user', user);
+        //console.log('user:', user);
         if(user && bcryptjs.compareSync(password, user.password)) {
           const token = createToken(user);
-          res.status(200).json({ message: `Welcome to the API, ${user.name}`, token, userId });
+          res.status(200).json({ data: user, token});
         } else {
           res.status(401).json({ message: "Invalid credentials" });
         }
@@ -61,14 +60,14 @@ router.get('/users/:id/issues', restricted, (req,res) => {
 
   Issues.findByUserId(id)
     .then(issues => {
-      if(issues) {
+      if(issues.length > 0) {
         res.status(200).json({ data: issues });
       } else {
-        res.status(404).json({ error: `Issues not found for user: ${id}` })
+        res.status(404).json({ error: `No issues found for user: ${id}` })
       }
     })
     .catch(err => {
-      console.log('GET tp /:id/issues', err);
+      console.log('GET to /:id/issues', err);
       res.status(500).json({ error: "Unable to retrieve your issues" });
     })
 });

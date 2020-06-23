@@ -11,7 +11,8 @@ exports.up = function(knex) {
         .notNullable();
       tbl.string('password', 128)
         .notNullable();
-      tbl.string('profile_pic');
+      tbl.string('profile_pic')
+        .defaultTo('');
     })
 
     .createTable('issues', tbl => {
@@ -24,7 +25,8 @@ exports.up = function(knex) {
       tbl.string('city')
         .notNullable();
       tbl.string('hoa');
-      tbl.string('image');
+      tbl.string('image')
+        .defaultTo('');
       tbl.integer('upvotes')
         .defaultTo(0);
       tbl.string('created_on');
