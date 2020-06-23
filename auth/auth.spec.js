@@ -7,7 +7,7 @@ describe('POST /api/register', () => {
     await db('users').truncate();
   })
 
-  it('should register a new user with a hashed password', () => {
+  it.only('should register a new user with a hashed password', () => {
     return supertest(server)
       .post('/api/register')
       .send({ email: "Joe@gmail.com", name: "Joe", password: "pass"})
@@ -26,7 +26,7 @@ describe('POST /api/login', () => {
       .send({ email: "Joe@gmail.com", password: "pass"})
       .then(res => {
         expect(res.status).toBe(200);
-        expect(res.body.message).toBe('Welcome to the API, Joe');
+        expect(res.body.data).toBeTruthy();
       })
   })
 

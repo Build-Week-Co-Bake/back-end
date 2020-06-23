@@ -1,6 +1,5 @@
 const server = require('../api/server');
 const supertest = require('supertest');
-const db = require('../data/dbConfig');
 
 let token;
 
@@ -12,7 +11,7 @@ describe('GET /issues', () => {
     .then(res => {
       token = res.body.token;
       return supertest(server)
-        .get('/issues')  
+      .get('/issues')  
         .set('Authorization', token)
         .then(res => {
           expect(res.body.data).toBeTruthy();
