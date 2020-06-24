@@ -102,7 +102,7 @@ describe('POST, PUT, and DELETE methods', () => {
       .then(res => {
         token = res.body.token;
         return supertest(server)
-          .delete('/issues/4')
+          .delete('/issues/5')
           .set('Authorization', token)
           .then(res => {
             expect(res.body.deleted).toBe("The issue was deleted")

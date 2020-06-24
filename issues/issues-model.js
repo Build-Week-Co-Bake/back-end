@@ -1,13 +1,9 @@
 const db = require('../data/dbConfig');
 
-// NEED TO ADD:
-// ISSUE.IMAGE
-// ISSUE.HOA
-
 // GET ALL ISSUES
 function find() {
   return db('issues')
-    .join('users', 'user_id', 'users.id')
+    .join('users', 'issues.user_id', 'users.id')
     .select('issues.id', 'issues.title', 'issues.description', 'issues.city', 'issues.hoa', 'issues.image', 'issues.upvotes', 'issues.created_on', 'users.profile_pic', 'users.name')
     .orderBy('issues.id');
 }
@@ -40,7 +36,9 @@ function findByUserId(id) {
 function add(issue) {
   return db('issues')
     .insert(issue, 'id')
-    .then(ids => findById(ids[0]))
+    .then(ids => {
+      return findById(ids[0])
+    })
     .catch(err => console.log(err))
 }
 
