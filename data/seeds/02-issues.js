@@ -16,7 +16,7 @@ exports.seed = function(knex) {
         {
           title: "Fallen Tree",
           description: "Next to the elementary school",
-          city: "santa barbara",
+          city: "los angeles",
           hoa: "",
           image: "",
           upvotes: 7,

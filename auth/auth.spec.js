@@ -26,7 +26,7 @@ describe('POST /api/login', () => {
       .send({ email: "Joe@gmail.com", password: "pass"})
       .then(res => {
         expect(res.status).toBe(200);
-        expect(res.body.data).toBeTruthy();
+        expect(res.body.data.email).toBe("Joe@gmail.com");
       })
   })
 
