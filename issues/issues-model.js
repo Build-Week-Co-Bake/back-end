@@ -47,7 +47,7 @@ function edit(issue, id) {
   return db('issues')
     .where({ id })
     .update(issue)
-    .then(ids => {
+    .then(() => {
       return findById(id)
     })
 }

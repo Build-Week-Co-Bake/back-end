@@ -72,7 +72,7 @@ router.put('/:id', (req,res) => {
   Issues.findById(id)
     .then(issue => {
       if(issue) {
-        Issues.edit({...update, city: update.city.toLowerCase()}, id)
+        Issues.edit(update, id)
           .then(updatedIssue => {
             res.status(200).json(updatedIssue);
           })
@@ -86,7 +86,7 @@ router.put('/:id', (req,res) => {
     })
     .catch(err => {
       console.log('PUT /:id', err);
-      res.status(500).json({ error: "Error occurred while updating the issue" });
+      res.status(500).json({ error: "Error occurred while updating the issue", err });
     })
 });
 
@@ -95,10 +95,12 @@ router.delete('/:id', (req,res) => {
   const { id } = req.params;
   Issues.findById(id)
     .then(issue => {
+      console.log(issue[0]);
       Issues.remove(issue[0].id)
         .then(removed => {
           if(removed) {
-            res.status(200).json({ deleted: "The issue was deleted" });
+            console.log(removed);
+            res.status(200).json({ deleted: "The issue was deleted", id });
           } else {
             res.status(404).json({ error: "Issue could not be deleted" });
           }
